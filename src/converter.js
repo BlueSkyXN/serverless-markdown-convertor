@@ -1,14 +1,15 @@
+/**
+ * File conversion utility functions
+ * @module converter
+ */
+
 import { SUPPORTED_MIME_TYPES, HTTP_STATUS } from './constants.js';
 import { createJsonResponse } from './auth.js';
 
 /**
- * File conversion utility functions
- */
-
-/**
- * Validate file types
+ * Validate that all uploaded files are of supported types
  * @param {File[]} files - Array of files to validate
- * @returns {object|null} - Error response or null if valid
+ * @returns {Response|null} - Error response if validation fails, null if valid
  */
 export function validateFileTypes(files) {
 	for (const file of files) {
@@ -25,7 +26,7 @@ export function validateFileTypes(files) {
 }
 
 /**
- * Log file information
+ * Log information about uploaded files to console
  * @param {File[]} files - Array of files to log
  */
 export function logFileInfo(files) {
@@ -36,9 +37,9 @@ export function logFileInfo(files) {
 }
 
 /**
- * Prepare files for conversion
+ * Prepare files for the Cloudflare AI conversion API
  * @param {File[]} files - Array of files to prepare
- * @returns {object[]} - Array of file objects ready for conversion
+ * @returns {object[]} - Array of file objects formatted for the API
  */
 export function prepareFilesForConversion(files) {
 	return files.map((file) => ({
@@ -48,10 +49,10 @@ export function prepareFilesForConversion(files) {
 }
 
 /**
- * Format conversion results
- * @param {object[]} results - Raw conversion results
- * @param {File[]} files - Original files array
- * @returns {object} - Formatted results object
+ * Format raw conversion results into a user-friendly structure
+ * @param {object[]} results - Raw conversion results from the AI API
+ * @param {File[]} files - Original files array for naming
+ * @returns {object} - Formatted results object with file names and markdown content
  */
 export function formatConversionResults(results, files) {
 	return {
@@ -61,3 +62,4 @@ export function formatConversionResults(results, files) {
 		})),
 	};
 }
+

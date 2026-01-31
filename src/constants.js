@@ -1,7 +1,12 @@
 /**
- * Application constants
+ * Application constants and configuration
+ * @module constants
  */
 
+/**
+ * Supported MIME types for file conversion
+ * @constant {string[]}
+ */
 export const SUPPORTED_MIME_TYPES = [
 	'application/pdf',
 	'image/jpeg',
@@ -19,6 +24,10 @@ export const SUPPORTED_MIME_TYPES = [
 	'application/vnd.apple.numbers',
 ];
 
+/**
+ * Application route paths
+ * @constant {Object.<string, string>}
+ */
 export const ROUTES = {
 	HOME: '/',
 	LOGIN: '/login',
@@ -28,6 +37,10 @@ export const ROUTES = {
 	CF_API: '/cf',
 };
 
+/**
+ * HTTP status codes used in the application
+ * @constant {Object.<string, number>}
+ */
 export const HTTP_STATUS = {
 	OK: 200,
 	FOUND: 302,
@@ -36,3 +49,4 @@ export const HTTP_STATUS = {
 	NOT_FOUND: 404,
 	INTERNAL_SERVER_ERROR: 500,
 };
+

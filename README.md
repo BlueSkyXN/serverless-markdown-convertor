@@ -2,6 +2,11 @@
 
 基于 Cloudflare Worker 和 AI 的免费、无需服务器可自行部署的文件转 Markdown 工具。
 
+## 📚 文档 (Documentation)
+
+- [API 文档 (API Documentation)](./API.md) - 完整的 API 使用指南
+- [贡献指南 (Contributing Guide)](./CONTRIBUTING.md) - 如何为项目做贡献
+
 ## 支持的文件类型
 
 | 文件类型 | 文件扩展名 | MIME 类型 |

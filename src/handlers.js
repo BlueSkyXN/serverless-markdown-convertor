@@ -1,15 +1,16 @@
+/**
+ * Request handlers for different routes
+ * @module handlers
+ */
+
 import { ROUTES, HTTP_STATUS } from './constants.js';
 import { getAuthCookie, verifyPassword, isAuthenticated, createJsonResponse } from './auth.js';
 import { validateFileTypes, logFileInfo, prepareFilesForConversion, formatConversionResults } from './converter.js';
 
 /**
- * Request handlers for different routes
- */
-
-/**
- * Handle GET requests
+ * Handle GET requests for static files and redirects
  * @param {Request} request - The request object
- * @param {object} env - Environment bindings
+ * @param {object} env - Environment bindings (including ASSETS)
  * @returns {Promise<Response>} - The response
  */
 export async function handleGetRequest(request, env) {
@@ -26,10 +27,10 @@ export async function handleGetRequest(request, env) {
 }
 
 /**
- * Handle authentication requests
+ * Handle user authentication requests
  * @param {Request} request - The request object
- * @param {object} env - Environment bindings
- * @returns {Promise<Response>} - The response
+ * @param {object} env - Environment bindings (including PASSWORD)
+ * @returns {Promise<Response>} - The response with authentication result
  */
 export async function handleAuthRequest(request, env) {
 	const { password } = await request.json();
@@ -39,8 +40,8 @@ export async function handleAuthRequest(request, env) {
 }
 
 /**
- * Handle logout requests
- * @returns {Response} - The response
+ * Handle user logout requests
+ * @returns {Response} - The response with cleared cookie
  */
 export function handleLogoutRequest() {
 	return createJsonResponse(
@@ -55,9 +56,9 @@ export function handleLogoutRequest() {
 /**
  * Handle file conversion requests
  * @param {Request} request - The request object
- * @param {object} env - Environment bindings
- * @param {boolean} isRawApi - Whether to return raw API response
- * @returns {Promise<Response>} - The response
+ * @param {object} env - Environment bindings (including AI and PASSWORD)
+ * @param {boolean} [isRawApi=false] - Whether to return raw API response format
+ * @returns {Promise<Response>} - The response with conversion results
  */
 export async function handleConversionRequest(request, env, isRawApi = false) {
 	// Verify authentication
@@ -100,3 +101,4 @@ export async function handleConversionRequest(request, env, isRawApi = false) {
 		return createJsonResponse({ error: error.message }, HTTP_STATUS.INTERNAL_SERVER_ERROR);
 	}
 }
+

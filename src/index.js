@@ -1,10 +1,24 @@
+/**
+ * Serverless Markdown Converter Worker
+ * Main entry point for the Cloudflare Worker application
+ * @module index
+ */
+
 import { ROUTES, HTTP_STATUS } from './constants.js';
 import { handleGetRequest, handleAuthRequest, handleLogoutRequest, handleConversionRequest } from './handlers.js';
 
 /**
  * Main worker entry point
+ * Handles all incoming HTTP requests and routes them to appropriate handlers
  */
 export default {
+	/**
+	 * Fetch handler for the Cloudflare Worker
+	 * @param {Request} request - The incoming HTTP request
+	 * @param {object} env - Environment bindings (AI, ASSETS, PASSWORD)
+	 * @param {object} ctx - Execution context
+	 * @returns {Promise<Response>} - The HTTP response
+	 */
 	async fetch(request, env, ctx) {
 		const url = new URL(request.url);
 		const method = request.method;
@@ -46,4 +60,5 @@ export default {
 		}
 	},
 };
+
 
