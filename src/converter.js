@@ -62,4 +62,3 @@ export function formatConversionResults(results, files) {
 		})),
 	};
 }
-

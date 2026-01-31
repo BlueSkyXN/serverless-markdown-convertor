@@ -63,4 +63,3 @@ export function createJsonResponse(data, status = HTTP_STATUS.OK, additionalHead
 		},
 	});
 }
-
